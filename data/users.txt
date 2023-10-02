@@ -1,0 +1,4 @@
+user_id: u_3117804962, user_name: ethan, user_password: password, user_register_time: 02-10-2023_15:07:38, user_role: customer
+user_id: u_2556254527, user_name: ethan, user_password: password, user_register_time: 02-10-2023_15:07:40, user_role: customer
+user_id: u_7253322528, user_name: default, user_password: password, user_register_time: 02-10-2023_15:08:50, user_role: customer
+user_id: u_1371044793, user_name: default, user_password: password, user_register_time: 02-10-2023_16:37:04, user_role: customer
