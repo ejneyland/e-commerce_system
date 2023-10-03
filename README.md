@@ -1,9 +1,9 @@
 ## E-commerce Information Management System
-#### <u>ITO4133 Assignment 2</u>
+<h4><u>ITO4133 Assignment 2</u></h4>
 &emsp;student: &nbsp;Ethan Neyland<br> 
 &emsp;ID: &nbsp;27932273
 
-#### <u>App Installation Instructions:</u>
+<h4><u>App Installation Instructions:</u></h4>
 
 Installation & Launch:
 
