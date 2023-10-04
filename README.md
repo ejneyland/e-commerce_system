@@ -1,11 +1,11 @@
 ## E-commerce Information Management System
-<h4><u>ITO4133 Assignment 2</u></h4>
+<h3><u>ITO4133 Assignment 2</u></h3>
 &emsp;student: &nbsp;Ethan Neyland<br> 
 &emsp;ID: &nbsp;27932273
 
-<h4><u>App Installation Instructions:</u></h4>
+<h3><u>App Installation Instructions:</u></h3>
 
-Installation & Launch:
+Installation & Launch
 
 1. If you don't already have an IDE, download Visual Studio Code or similar
 

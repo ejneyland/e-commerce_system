@@ -20,7 +20,7 @@ class Customer(User):
         return str(user_data)
     
     def save_to_file(self):
-        # appends string representation of a new Customer instance to textfile
+        # appends a string representation of a new Customer instance to textfile
         user_data = str(self)
         # "a" option to 'append' to the users textfile-database in the data folder
         with open("data/users.txt", "a") as file:

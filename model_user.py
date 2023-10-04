@@ -1,21 +1,17 @@
 import random
 import datetime
-# import json
 
 class User:
 
     existing_ids = set()
 
     # default values set for user_register_time and user_role
-    def __init__(self, user_id, user_name, user_password, user_register_time = "00-00-0000_00:00:00", user_role = "customer"):
-        self.user_id = user_id
+    def __init__(self, user_name, user_password, user_role = "customer"):
+        self.user_id = self.generate_user_id()
         self.user_name = user_name
         self.user_password = user_password
-        self.user_register_time = user_register_time
+        self.user_register_time = self.retrieve_time_of_registration() or "00-00-0000_00:00:00"
         self.user_role = user_role
-
-        # adds the uniquely generated id to a list of existing ids
-        User.existing_ids.add(user_id)
 
     @classmethod
     def generate_user_id(cls):
@@ -23,9 +19,11 @@ class User:
         # e.g. 'u_0123456789'
         while True:
             user_id = 'u_' + ''.join(str(random.randint(0, 9)) for _ in range(10))
-            # checks that the generated id is not already in the existing ids
+            # checks that the generated id is not already in the existing_ids
             # if user_id already exists >> loop restarts >> new user_id generated and checked
             if user_id not in cls.existing_ids:
+                # adds the uniquely generated id to a list of existing_ids
+                cls.existing_ids.add(user_id)
                 # if id is unique >> id is returned
                 return user_id
     
@@ -46,7 +44,3 @@ class User:
             'user_role': self.user_role
         }
         return str(user_data)
-
-
-newUser = User(User.generate_user_id(), "default", "password", User.retrieve_time_of_registration(), "customer")
-newUser.save_to_file()
