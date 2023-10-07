@@ -1,5 +1,6 @@
 class AdminOperation:
     
+    # def register_admin():
     def save_to_file(new_admin):
         # appends string representation of a new Admin instance to textfile
         user_data = str(new_admin)

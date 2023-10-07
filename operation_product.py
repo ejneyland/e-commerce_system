@@ -24,3 +24,32 @@ class ProductOperation:
         # "a" option to 'append' to the prods textfile-database in the data folder
         with open("data/products.txt", "a") as file:
             file.write(prod_data + '\n')
+
+    def extract_products_from_files():
+        pass
+
+    def get_product_list(page_number):
+        pass # return tuple
+    # including a list of products objects and the total number of pages. 
+    # e.g. ([Product1,Product2,Product3,...Product10],p age_number, total_page)
+
+    def delete_product(product_id):
+        pass # return True/False
+
+    def get_product_by_id(product_id):
+        pass # a Product object or None if not found
+
+    def generate_category_figure():
+        pass
+
+    def generate_discount_figure():
+        pass
+
+    def generate_likes_count_figure():
+        pass
+
+    def generate_discount_likes_count_figure():
+        pass
+
+    def delete_all_products():
+        pass

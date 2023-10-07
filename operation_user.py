@@ -68,6 +68,15 @@ class UserOperation:
         except Exception as e:
             print(f"An error occurred: {e}")
             return False
+        
+    def validate_username(user_name):
+        pass # returns True/False
+
+    def validate_password(user_password):
+        pass # returns True/False
+
+    def login(user_name, user_password):
+        pass # returns a Cusomer/Admin object
 
 
 # ------------------------------------------------------------
