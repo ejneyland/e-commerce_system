@@ -1,0 +1,2 @@
+{'user_id': 'u_2038535886', 'user_name': 'stevey_boi', 'user_password': 'steve123', 'user_register_time': '07-10-2023_14:39:54', 'user_role': 'customer', 'user_email': 'stevey@gmail.com', 'user_mobile': '1800 STEVE'}
+{'user_id': 'u_7571274187', 'user_name': "emma_mc'ween", 'user_password': 'password', 'user_register_time': '07-10-2023_14:39:54', 'user_role': 'customer', 'user_email': 'emma@gmail.com', 'user_mobile': '1800 EMMA'}

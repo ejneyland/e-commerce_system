@@ -2,8 +2,9 @@ from model_user import User
 
 class Admin(User):
 
-    def __init__(self, user_id, user_name, user_password, user_register_time="00-00-0000_00:00:00", user_role="admin"):
-        super().__init__(user_id, user_name, user_password, user_register_time, user_role)
+    def __init__(self, user_name, user_password):
+        super().__init__(user_name, user_password)
+        self.user_role = "admin"
 
     def __str__(self):
         user_data = {
@@ -14,10 +15,3 @@ class Admin(User):
             'user_role': self.user_role
         }
         return str(user_data)
-    
-    def save_to_file(self):
-        # appends string representation of a new Admin instance to textfile
-        user_data = str(self)
-        # "a" option to 'append' to the users textfile-database in the data folder
-        with open("data/users.txt", "a") as file:
-            file.write(user_data + '\n')

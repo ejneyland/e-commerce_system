@@ -1,9 +1,12 @@
 from model_user import User
+# from operation_customer import CustomerOperation
 
 class Customer(User):
 
-    def __init__(self, user_id, user_name, user_password, user_register_time="00-00-0000_00:00:00", user_role="customer", user_email="", user_mobile=""):
-        super().__init__(user_id, user_name, user_password, user_register_time, user_role)
+    def __init__(self, user_name, user_password, user_email, user_mobile):
+        # user_id, user_register_time and user_role 
+        # automatically generated through the User constructor
+        super().__init__(user_name, user_password)
         self.user_email = user_email
         self.user_mobile = user_mobile
 
@@ -18,10 +21,13 @@ class Customer(User):
             'user_mobile': self.user_mobile
         }
         return str(user_data)
-    
-    def save_to_file(self):
-        # appends a string representation of a new Customer instance to textfile
-        user_data = str(self)
-        # "a" option to 'append' to the users textfile-database in the data folder
-        with open("data/users.txt", "a") as file:
-            file.write(user_data + '\n')
+
+# ------------------------------------------------------------    
+
+# steve = Customer(user_name="stevey_boi", user_password="steve123", user_email="stevey@gmail.com", user_mobile="1800 STEVE")
+
+# CustomerOperation.save_to_file(steve)
+
+# emma = Customer(user_name="emma_mc'ween", user_password="password", user_email="emma@gmail.com", user_mobile="1800 EMMA")
+
+# CustomerOperation.save_to_file(emma)
