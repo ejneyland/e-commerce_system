@@ -1,5 +1,4 @@
 from model_user import User
-# from operation_customer import CustomerOperation
 
 class Customer(User):
 

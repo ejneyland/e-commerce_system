@@ -1,5 +1,7 @@
 import random
 import datetime
+from model_customer import Customer
+from model_admin import Admin
 
 class UserOperation:
     
@@ -60,23 +62,71 @@ class UserOperation:
                     user_data = eval(line)
                     if user_data['user_name'] == input_username:
                         return True
-                    else:
-                        return False
+                return False
         except FileNotFoundError:
             print("File not found.")
             return False
         except Exception as e:
             print(f"An error occurred: {e}")
             return False
-        
+
+    @staticmethod    
     def validate_username(user_name):
-        pass # returns True/False
+        # name should only contain letters or underscores
+        # length should be at least 5 characters
+        # returns True/False
+        return user_name.isalpha() or '_' in user_name and len(user_name) >= 5
+        # isalpha() checks if all the characters are alphabet letters
 
+    @staticmethod
     def validate_password(user_password):
-        pass # returns True/False
+        # password should contain at least one letter and one number
+        # length should be at least 5 characters
+        # returns True/False
+        has_a_letter = False
+        has_a_digit = False
 
+        if len(user_password) >= 5:
+            for char in user_password:
+                if char.isalpha():
+                    has_a_letter = True
+                elif char.isdigit():
+                    has_a_digit = True
+
+            return has_a_letter and has_a_digit
+
+        return False
+
+    @staticmethod
     def login(user_name, user_password):
-        pass # returns a Cusomer/Admin object
+        # returns a Cusomer/Admin object
+        # verifies the provided users name and password combination against stored user data
+        try:
+            with open("data/users.txt", "r") as file:
+                for line in file:
+                    user_data = eval(line)  # Convert the string representation to a dictionary
+                    if user_data['user_name'] == user_name and user_data['user_password'] == user_password:
+                        if user_data['user_role'] == 'customer':
+                            return Customer(
+                                user_data['user_name'], 
+                                user_data['user_password'],
+                                user_data['user_email'],
+                                user_data['user_mobile']
+                            )
+                        elif user_data['user_role'] == 'admin':
+                            return Admin(
+                                user_data['user_name'], 
+                                user_data['user_password'],
+                                user_data['user_email'],
+                                user_data['user_mobile']
+                            )
+                return None  # Return None if login fails
+        except FileNotFoundError:
+            print("File not found.")
+            return None
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return None
 
 
 # ------------------------------------------------------------
