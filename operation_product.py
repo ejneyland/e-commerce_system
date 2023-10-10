@@ -17,27 +17,62 @@ class ProductOperation:
                 ProductOperation.existing_ids.add(prod_id)
                 # if id is unique >> id is returned
                 return prod_id
-            
-    def save_to_file(product):
-        # appends the string representation of a new Product instance to a textfile
-        prod_data = str(product)
-        # "a" option to 'append' to the prods textfile-database in the data folder
-        with open("data/products.txt", "a") as file:
-            file.write(prod_data + '\n')
 
+    @staticmethod
     def extract_products_from_files():
-        pass
+        with open("data/products.txt", "a") as file:
+            for category in ["accessories", "bags", "beauty", "house", "jewelry", "kids", "men", "shoes", "women"]:
+                with open(f"data/product/{category}.csv", "r") as csv_file:
+                    for line in csv_file:
+                        prod_data = line.strip().split(',')
+                        prod_id = ProductOperation.generate_prod_id()
+                        prod_model, prod_category, prod_name, prod_current_price, prod_raw_price, prod_discount, prod_likes_count = prod_data[21], prod_data[0], prod_data[2], prod_data[3], prod_data[4], prod_data[6], prod_data[7]
+                        prod_data = f"{prod_id},{prod_model},{prod_category},{prod_name},{prod_current_price},{prod_raw_price},{prod_discount},{prod_likes_count}"
+                        file.write(prod_data + '\n')
 
+    @staticmethod
     def get_product_list(page_number):
-        pass # return tuple
-    # including a list of products objects and the total number of pages. 
-    # e.g. ([Product1,Product2,Product3,...Product10],p age_number, total_page)
+        # retrieves one page of products from textfile, max. 10 items per page
+        # return tuple
+        # including a list of products objects and the total number of pages. 
+        # e.g. ([Product1,Product2,Product3,...Product10],p age_number, total_page)
+        with open("data/products.txt", "r") as file:
+            products = [line.strip().split(',') for line in file]
+            start_index = (page_number - 1) * 10
+            end_index = min(page_number * 10, len(products))
+            return products[start_index:end_index], page_number, len(products) // 10 + 1
 
-    def delete_product(product_id):
-        pass # return True/False
+    @staticmethod
+    def delete_product(prod_id):
+        deletion_successful = False
+        with open("data/products.txt", "r") as file:
+            lines = file.readlines()
 
-    def get_product_by_id(product_id):
-        pass # a Product object or None if not found
+            for line in lines:
+                if line.strip().split(',')[0] == prod_id:
+                    lines.remove(line)
+                    deletion_successful = True
+
+        with open("data/products.txt", "w") as file:
+            file.writelines(lines)
+        
+        return deletion_successful
+    
+    @staticmethod
+    def get_product_by_id(prod_id):
+        with open("data/products.txt", "r") as file:
+            for line in file:
+                prod_data = line.strip().split(',')
+                if prod_data[0] == prod_id:
+                    return prod_data
+            return None
+    
+    @staticmethod
+    def delete_all_products():
+        with open("data/products.txt", "w") as file:
+            file.write("")
+
+    # ---------------
 
     def generate_category_figure():
         pass
@@ -49,7 +84,4 @@ class ProductOperation:
         pass
 
     def generate_discount_likes_count_figure():
-        pass
-
-    def delete_all_products():
         pass
