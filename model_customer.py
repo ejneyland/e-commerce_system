@@ -3,7 +3,7 @@ from model_user import User
 class Customer(User):
 
     # Customer Constructor method
-    def __init__(self, user_id, user_name, user_register_time, user_password, user_email, user_mobile):
+    def __init__(self, user_id, user_name, user_password, user_register_time, user_email, user_mobile):
         # id, name, password & time are initialised through the User constructor
         # the default user_role "customer" is also inherited, and does not need to be parsed
         super().__init__(user_id, user_name, user_password, user_register_time)

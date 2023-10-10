@@ -25,10 +25,55 @@ class ProductOperation:
                 with open(f"data/product/{category}.csv", "r") as csv_file:
                     for line in csv_file:
                         prod_data = line.strip().split(',')
-                        prod_id = ProductOperation.generate_prod_id()
-                        prod_model, prod_category, prod_name, prod_current_price, prod_raw_price, prod_discount, prod_likes_count = prod_data[21], prod_data[0], prod_data[2], prod_data[3], prod_data[4], prod_data[6], prod_data[7]
+
+                        prod_id = prod_data[-2]
+                        prod_model = prod_data[-1]
+                        prod_category = prod_data[0]
+                        prod_name = prod_data[2]
+                        prod_current_price = prod_data[3]
+                        prod_raw_price = prod_data[4]
+                        prod_discount = prod_data[6]
+                        prod_likes_count = prod_data[7]
+
                         prod_data = f"{prod_id},{prod_model},{prod_category},{prod_name},{prod_current_price},{prod_raw_price},{prod_discount},{prod_likes_count}"
                         file.write(prod_data + '\n')
+
+    @staticmethod
+    def show_category_products(selection):
+
+        with open("data/products.txt", "r") as file:
+            products = [line.strip().split(',') for line in file]
+    
+        if selection == '1': # show accessories
+            category = "accessories"
+        elif selection == '2': # show bags
+            category = "bags"
+        elif selection == '3': # show beauty
+            category = "beauty"
+        elif selection == '4': # show house
+            category = "house"
+        elif selection == '5': # show jewelry
+            category = "jewelry"
+        elif selection == '6': # show kids
+            category = "kids"
+        elif selection == '7': # show men
+            category = "men"
+        elif selection == '8': # show shoes
+            category = "shoes"
+        elif selection == '9': # show women
+            category = "women"
+        else:
+            "Inalid selection"
+
+        category_products = [product for product in products if product[2] == category]
+
+        if category_products:
+            print(f"Products in the {category} category:")
+            for product in category_products:
+                print(f"ID: {product[0]}, Name: {product[3]}, Current Price: {product[4]}, Discount: {product[6]}")
+        else:
+            print(f"No products found in the {category} category.")
+        
 
     @staticmethod
     def get_product_list(page_number):
@@ -76,12 +121,21 @@ class ProductOperation:
 
     def generate_category_figure():
         pass
+    # generates a bar chart showing the total numberof products for each category in a descending order
+    # saving to data/figure folder
 
     def generate_discount_figure():
         pass
+    # generates a pie chart that shows the proportion of products that have a discount value less than 30, between 30 and 60 inclusive, and greater than 60
+    # saving to data/figure folder
 
     def generate_likes_count_figure():
         pass
+    # generates a chart displaying the sum of products likes_count for each category in ascending order
+    # saving to data/figure folder
 
     def generate_discount_likes_count_figure():
         pass
+    # generates a scatter chart showing the relationship between likes_count and discount for all products
+    # saving to data/figure folder
+

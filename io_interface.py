@@ -39,6 +39,23 @@ e-commerce information system
 ------------------------
         """, end=' ')
 
+    def products_menu():
+        print("""
+              "accessories", "bags", "beauty", "house", "jewelry", "kids", "men", "shoes", "women"]
+------------------------
+PRODUCTS
+1. Accessories
+2. Bags
+3. Beauty
+4. House
+5. Jewelry
+6. Kids
+7. Men
+8. Shoes
+9. Women
+------------------------
+        """)
+
     def show_list(user_role, list_type, object_list):
         pass
         # object lists: Customer, Product, Order

@@ -2,7 +2,8 @@ from model_admin import Admin
 
 class AdminOperation:
     
-    def register_admin(self, user_id, user_name, user_password, user_register_time):
+    @staticmethod
+    def register_admin(user_id, user_name, user_password, user_register_time):
         # upon running the application, user database is cleared
         # before being repopulated
         # then, call the register_admin to create single admin instance

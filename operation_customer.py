@@ -22,23 +22,18 @@ class CustomerOperation(UserOperation):
     def validate_mobile(user_mobile):
         return len(user_mobile) == 10 and (user_mobile.startswith("04") or user_mobile.startswith("03"))
 
-    def register_customer(user_id, user_name, user_password, user_email, user_mobile, user_register_time):
-        # must include
-        # apply validations on all the values
-        # if the user_name exists in textfile return False
-        # unique user_id required when registering new user
-        # user_register_time
-        # returns True/False
-        # appends a string representation of a new Customer instance to textfile
+    def register_customer(user_id, user_name, user_password, user_register_time, user_email, user_mobile):
+        # registration fails if the username already exists
         if CustomerOperation.check_username_exists(user_name):
             return False
-        user_data = str(Customer(user_name, user_password, user_email, user_mobile, user_register_time))
-        # "a" option to 'append' to the users textfile-database in the data folder
+        customer = Customer(user_id, user_name, user_password, user_register_time, user_email, user_mobile)
+        # appends the new Customer/User to the users database
         with open("data/users.txt", "a") as file:
-            file.write(user_data + '\n')
+            file.write(str(customer) + '\n')
         return True
 
     def update_profile(attribute_name, value, customer_object: Customer):
+        # updates/mutates specified user attributes with a new value
         if attribute_name == "user_name":
             customer_object.user_name = value
         elif attribute_name == "user_password":
@@ -52,9 +47,10 @@ class CustomerOperation(UserOperation):
     def delete_customer(customer_id):
         lines = []
         deleted = False
+        # reads each line from the user database
         with open("data/users.txt", "r") as file:
             lines = file.readlines()
-
+        # writes all users to database except for the specified customer for deletion
         with open("data/users.txt", "w") as file:
             for line in lines:
                 if line.strip().split(',')[0] != customer_id:
@@ -66,11 +62,10 @@ class CustomerOperation(UserOperation):
     def get_customer_list(page_number):
         pass 
         with open("data/users.txt", "r") as file:
-            customers = []
-            users = [line.strip().split(',') for line in file]
+            customers = [line.strip().split(',') for line in file if line.strip().split(',')[4] != 'admin']
             start_index = (page_number - 1) * 10
             end_index = min(page_number * 10, len(customers))
-            return customers[start_index:end_index], page_number, len(customers) // 10 + 1
+            print(customers[start_index:end_index], page_number, len(customers) // 10 + 1)
 
     def delete_all_customers():
         with open("data/users.txt", "r") as file:
@@ -78,5 +73,5 @@ class CustomerOperation(UserOperation):
 
         with open("data/users.txt", "w") as file:
             for line in lines:
-                if line.strip().split(',')[4] == 'customer':
+                if line.strip().split(',')[4] == 'admin':
                     file.write(line)

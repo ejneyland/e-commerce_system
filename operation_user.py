@@ -28,16 +28,16 @@ class UserOperation:
         return user_register_time
             
     def encrypt_password(user_password):
-        # generates random string double the length of user_password
         characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        # generates random string double the length of user_password
         generated_random_string = ''.join(random.choice(characters) for _ in range(len(user_password) * 2))
-        # combines random string with user_password
         encrypted_password = ""
 
-        # i = 0 >> i = 1 >> i = 2 >> ... >> i 
+        # combines random string with user_password
         for i in range(0, len(user_password)):
             encrypted_password += generated_random_string[i*2:i*2+2] + user_password[i]
 
+        # returns encrypted password with start (^^) and end ($$) markers
         return "^^" + encrypted_password + "$$"
 
     def decrypt_password(encrypted_password):
@@ -104,23 +104,25 @@ class UserOperation:
         try:
             with open("data/users.txt", "r") as file:
                 for line in file:
-                    user_data = eval(line)  # Convert the string representation to a dictionary
+                    user_data = eval(line)
                     if user_data['user_name'] == user_name and user_data['user_password'] == user_password:
                         if user_data['user_role'] == 'customer':
                             return Customer(
+                                user_data['user_id'],
                                 user_data['user_name'], 
                                 user_data['user_password'],
+                                user_data['user_register_time'],
                                 user_data['user_email'],
                                 user_data['user_mobile']
                             )
                         elif user_data['user_role'] == 'admin':
                             return Admin(
+                                user_data['user_id'],
                                 user_data['user_name'], 
                                 user_data['user_password'],
-                                user_data['user_email'],
-                                user_data['user_mobile']
+                                user_data['user_register_time']
                             )
-                return None  # Return None if login fails
+                return None  # returns None if login fails
         except FileNotFoundError:
             print("File not found.")
             return None
@@ -128,18 +130,4 @@ class UserOperation:
             print(f"An error occurred: {e}")
             return None
 
-
 # ------------------------------------------------------------
-
-
-# password = "admin1" # length = 6
-# enc_password = UserOperation.encrypt_password(password)
-# # print(len(enc_password)) # 22 - 4 = 18 (stripped)
-# dec_password = UserOperation.decrypt_password(enc_password)
-# print(dec_password) # admin1
-
-# password_two = "FIT9136" # length = 7
-# enc_password_two = UserOperation.encrypt_password(password_two)
-# print(len(enc_password_two)) # 25 - 4 = 21 (stripped)
-# dec_password_two = UserOperation.decrypt_password(enc_password_two)
-# print(dec_password_two) # FIT9136
