@@ -9,7 +9,7 @@ Contents:
 
 ### Project Brief:
 
-This project is an e-commerce system allowing customers to log in and perform shopping operations like purchasing products, viewing order history and showing user consumption reports. Besides customers, admin users need to be created to manage the whole system, who can create/delete/view customers, products and all the orders. 
+This project is an e-commerce information management system, allowing customers to log in and perform shopping operations like purchasing products, viewing order history and showing user consumption reports. Besides customers, admin users are created and authorised to manage the whole system, create/delete/view customers, products and orders. 
 
 As the whole system is executed in the command line, an interface showing proper messages to guide users has been implemented. In this project, open-source data from data.world has been used, which contains 9 files of products. All the product's data is retrieved from these files.
 
@@ -47,4 +47,4 @@ Installation & Launch
 
 Application User Manual:
 
-From the main menu, displayed upon launch of the application..
+From the main menu, follow instructions displayed upon launch of the application..
