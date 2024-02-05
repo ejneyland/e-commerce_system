@@ -1,9 +1,25 @@
-## E-commerce Information Management System
-<h3><u>ITO4133 Assignment 2</u></h3>
-&emsp;student: &nbsp;Ethan Neyland<br> 
-&emsp;ID: &nbsp;27932273
+# E-commerce Information Management System
+Individual Project (October 2023)
 
-<h3><u>App Installation Instructions:</u></h3>
+Contents:
+- Project Brief
+- App Installation Instructions
+
+
+
+### Project Brief:
+
+This project is an e-commerce system allowing customers to log in and perform shopping operations like purchasing products, viewing order history and showing user consumption reports. Besides customers, admin users need to be created to manage the whole system, who can create/delete/view customers, products and all the orders. 
+
+As the whole system is executed in the command line, an interface showing proper messages to guide users has been implemented. In this project, open-source data from data.world has been used, which contains 9 files of products. All the product's data is retrieved from these files.
+
+In this project, the relationship between various classes are decoupled and modularised. There are four main parts: IOInterface, Main Control Class, Operation Classes and Model Classes. When using the system, end users will only need to interact with the IOInterface class. 
+
+The Main Control class handles the main business logic. The operation classes use the model classes as templates to manipulate the data reading/writing. The file reading/writing operations happen in the operation classes, which simulate the database activities.
+
+
+
+### App Installation Instructions:
 
 Installation & Launch
 
